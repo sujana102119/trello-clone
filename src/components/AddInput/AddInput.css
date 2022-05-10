@@ -1,0 +1,19 @@
+.addTask {
+    display: flex;
+    justify-content: space-around;
+    margin: 9% 1% 7% 4%;
+}
+
+.newTaskTitle {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #B8D8EA;
+    width: 70%;
+}
+
+.addTaskButton {
+    background-color: transparent;
+    border: none;
+    font-weight: bolder;
+    font-size: large;
+}

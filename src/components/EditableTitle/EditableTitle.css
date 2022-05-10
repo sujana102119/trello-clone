@@ -1,0 +1,10 @@
+.editableTitle {
+    background-color: transparent;
+    border: none;
+    order: 0;
+    align-self: center;
+    font-size: large;
+    font-weight: 900;
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    text-align: center;
+}

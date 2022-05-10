@@ -1,0 +1,19 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 1%;
+    background-color: #D9DFE9;
+    padding: 1rem;
+    border-radius: 5px;
+    width:fit-content;
+}
+
+.deleteCard {
+    align-self: center;
+    border: 1px solid #E7B2B3;
+    border-radius: 5px;
+    background-color: transparent;
+    font-size: xx-small;
+    padding: 3px;
+}

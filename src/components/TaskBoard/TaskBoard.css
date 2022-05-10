@@ -1,0 +1,18 @@
+.taskBoard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    background-color: #123753;
+    flex-basis: 100%;
+    align-items: flex-start;
+}
+
+.addCard {
+    border-radius: 50%;
+    background-color: #07B4EE;
+    height: 35px;
+    width: 35px;
+    border-color: transparent;
+    margin-left: 1%;
+    margin-top: 2%;
+}

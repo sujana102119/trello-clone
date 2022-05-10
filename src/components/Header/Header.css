@@ -1,0 +1,20 @@
+.signOut {
+    border: 1px solid black;
+    border-radius: 4px;
+    background-color: transparent;
+}
+
+.title {
+    font-family: MD Primer Bold,Rubik,Lato,Lucida Grande,Lucida Sans Unicode,Tahoma,sans-serif;
+    font-size: large;
+    font-weight: 900;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #07B4EE;
+    padding: 0rem 2rem 0rem 1.5rem;
+    flex-basis: content;
+}
