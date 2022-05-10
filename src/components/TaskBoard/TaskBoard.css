@@ -5,6 +5,7 @@
     background-color: #123753;
     flex-basis: 100%;
     align-items: flex-start;
+    padding: 1rem;
 }
 
 .addCard {

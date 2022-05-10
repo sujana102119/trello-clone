@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 import Card from '../Card';
 import './TaskBoard.css';
@@ -47,6 +47,31 @@ const mockList = [
 function TaskBoard(props) {
 
     const [cards, setCards] = useState(mockList);
+    const dragItem = useRef();
+    const dragOverItem = useRef();
+
+
+    const dragStart = (e, position) => {
+        dragItem.current = position;
+        console.log(e.target.innerHTML);
+      };
+
+    const dragEnter = (e, position) => {
+        dragOverItem.current = position;
+        console.log(e.target.innerHTML);
+    };
+
+    const drop = (e) => {
+        const copyListItems = [...cards];
+        const dragItemContent = copyListItems[dragItem.current];
+        copyListItems.splice(dragItem.current, 1);
+        copyListItems.splice(dragOverItem.current, 0, dragItemContent);
+        dragItem.current = null;
+        dragOverItem.current = null;
+        setCards(copyListItems);
+    };
+     
+    
 
     const onAddCard = () => {
         const cardsCopy = cards;
@@ -74,13 +99,21 @@ function TaskBoard(props) {
 
         <div className="taskBoard">
             {
-                cards.map((cardData) => 
+                cards.map((cardData, index) => 
+                <div
+                    draggable
+                    onDragStart={(e) => dragStart(e, index)}
+                    onDragEnter={(e) => dragEnter(e, index)}
+                    onDragEnd={drop}
+                    onDragOver={(e) => e.preventDefault()}
+                >
                     <Card 
                         key={cardData.id} 
                         cardData={cardData}
                         onDeleteCard={() => onDeleteCard(cardData.id)}
-                        updateCard={onUpdateCard}
-                    />)
+                        updateCard={onUpdateCard}                        
+                    />
+                </div>)
             }
             <button className="addCard" onClick={onAddCard}>+</button>
         </div>
