@@ -1,6 +1,6 @@
 import React from 'react';
-import {useRef} from 'react';
 import './Draggable.css';
+import PropTypes from 'prop-types';
 
 function Draggable(props) {
     const {index, dragStart, dragEnter, drop} = props;
@@ -16,6 +16,13 @@ function Draggable(props) {
             {props.children} 
         </div>
     );
+}
+
+Draggable.propTypes = {
+    index: PropTypes.number, 
+    dragStart: PropTypes.func, 
+    dragEnter: PropTypes.func,
+    drop: PropTypes.func
 }
 
 export default Draggable;

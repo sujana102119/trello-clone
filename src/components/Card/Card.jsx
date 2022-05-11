@@ -5,6 +5,7 @@ import EditableTitle from '../EditableTitle';
 import Draggable from '../Draggable';
 import './Card.css';
 import {useRef} from 'react';
+import PropTypes from 'prop-types';
 
 function Card(props) {
 
@@ -94,6 +95,21 @@ function Card(props) {
         </div>
 
     );
+}
+
+Card.propTypes = {
+    cardData: PropTypes.shape({
+        id: PropTypes.string,
+        title: PropTypes.string,
+        tasks: PropTypes.arrayOf(
+            PropTypes.shape({
+                id: PropTypes.string,
+                title: PropTypes.string,
+            })
+        )
+    }), 
+    onDeleteCard: PropTypes.func, 
+    updateCard: PropTypes.func
 }
 
 export default Card;

@@ -1,121 +1,78 @@
-import React from 'react';
-import { useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 
 import Card from '../Card';
 import Draggable from '../Draggable';
 import './TaskBoard.css';
+import { mockCards } from '../../lib/mockData';
 
-const mockList = [
-    {
-        id: 1,
-        title: 'Grocery Store',
-        tasks: [
-            {
-                id: 1, 
-                title: 'Italian Bread',
-            },
-            {
-                id: 2, 
-                title: 'Spaghetti',
-            },
-            {
-                id: 3, 
-                title: 'Milk',
-            },
-            {
-                id: 4, 
-                title: 'Chicken Wings',
-            }
-        ]
-    },
-    {
-        id: 2,
-        title: 'Calc III',
-        tasks: [
-            {
-                id: 1, 
-                title: 'Cook',
-            },
-            {
-                id: 2, 
-                title: 'Clean',
-            }
-        ]
-    }
-    ];
+function TaskBoard() {
+  const [cards, setCards] = useState(mockCards);
+  const draggedItem = useRef();
+  const draggedOverItem = useRef();
 
+  const dragStart = (index) => {
+    draggedItem.current = index;
+  };
 
-function TaskBoard(props) {
+  const dragEnter = (index) => {
+    draggedOverItem.current = index;
+  };
 
-    const [cards, setCards] = useState(mockList);
-    const draggedItem = useRef();
-    const draggedOverItem = useRef();
+  const drop = () => {
+    const cardsCopy = [...cards];
+    const draggedItemValue = cardsCopy[draggedItem.current];
+    cardsCopy.splice(draggedItem.current, 1);
+    cardsCopy.splice(draggedOverItem.current, 0, draggedItemValue);
+    draggedItem.current = null;
+    draggedOverItem.current = null;
+    setCards(cardsCopy);
+  };
 
+  const onAddCard = () => {
+    const cardsCopy = cards;
+    cardsCopy.push({ id: Date.now().toString(), title: '', tasks: [] });
+    setCards([...cardsCopy]);
+  };
 
-    const dragStart = (index) => {
-        draggedItem.current = index;
-      };
+  const onUpdateCard = (cardData) => {
+    const cardsCopy = cards;
+    const indexOfUpdatedCard = cards.findIndex((item) => item.id === cardData.id);
 
-    const dragEnter = (index) => {
-        draggedOverItem.current = index;
-    };
+    cardsCopy[indexOfUpdatedCard] = cardData;
+    setCards([...cardsCopy]);
+  };
 
-    const drop = (e) => {
-        const cardsCopy = [...cards];
-        const draggedItemValue = cardsCopy[draggedItem.current];
-        cardsCopy.splice(draggedItem.current, 1);
-        cardsCopy.splice(draggedOverItem.current, 0, draggedItemValue);
-        draggedItem.current = null;
-        draggedOverItem.current = null;
-        setCards(cardsCopy);
-    };
-     
-    
+  const onDeleteCard = (id) => {
+    const cardsCopy = cards;
+    const indexOfDeletedCard = cards.findIndex((item) => item.id === id);
 
-    const onAddCard = () => {
-        const cardsCopy = cards;
-        cardsCopy.push({id: Date.now().toString(), title: '', tasks: []});
-        setCards([...cardsCopy]);
-    }
+    cardsCopy.splice(indexOfDeletedCard, 1);
+    setCards([...cardsCopy]);
+  };
 
-    const onUpdateCard = (cardData) => {
-        const cardsCopy = cards;
-        const indexOfUpdatedCard = cards.findIndex(item => item.id === cardData.id);
+  return (
 
-        cardsCopy[indexOfUpdatedCard] = cardData;
-        setCards([...cardsCopy]);
-    }
-
-    const onDeleteCard = (id) => {
-        const cardsCopy = cards;
-        const indexOfDeletedCard = cards.findIndex(item => item.id === id);
-
-        cardsCopy.splice(indexOfDeletedCard, 1);
-        setCards([...cardsCopy]);
-    }
-
-    return (
-
-        <div className="taskBoard">
-            {
-                cards.map((cardData, index) => 
-                <Draggable
-                    dragStart ={dragStart}
+    <div className="taskBoard">
+      {
+                cards.map((cardData, index) => (
+                  <Draggable
                     dragEnter={dragEnter}
+                    dragStart={dragStart}
                     drop={drop}
                     index={index}
-                >
-                    <Card 
-                        key={cardData.id} 
-                        cardData={cardData}
-                        onDeleteCard={() => onDeleteCard(cardData.id)}
-                        updateCard={onUpdateCard}                        
+                  >
+                    <Card
+                      key={cardData.id}
+                      cardData={cardData}
+                      onDeleteCard={() => onDeleteCard(cardData.id)}
+                      updateCard={onUpdateCard}
                     />
-                </Draggable>)
+                  </Draggable>
+                ))
             }
-            <button className="addCard" onClick={onAddCard}>+</button>
-        </div>
-    )
+      <button className="addCard" onClick={onAddCard} type="button">+</button>
+    </div>
+  );
 }
 
 export default TaskBoard;
