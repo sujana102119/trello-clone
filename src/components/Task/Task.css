@@ -3,13 +3,17 @@
     align-items: center;
     justify-content: space-between;
     background-color: #F3F3F3;
-    margin: 2%;
+    margin: 0.5rem 0.25rem;
     border-radius: 5px;
-    padding: 4px 10px;
+    padding: 0.25rem 0.625rem;
 }   
 
 .taskTitle {
     font-size: small;
+}
+
+input.taskTitle {
+    line-height: 1.5rem;
 }
 
 .buttons {
@@ -22,5 +26,5 @@
 }
 
 .smallIcon {
-    font-size: 16px;
+    font-size: 1rem;
 }

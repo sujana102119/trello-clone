@@ -8,3 +8,10 @@
     font-family: "Open Sans", Helvetica, Arial, sans-serif;
     text-align: center;
 }
+
+input.editableTitle {
+    line-height: 2rem;
+    margin:0.3rem 0;
+    min-width:12.5rem;
+    width:100%;
+}

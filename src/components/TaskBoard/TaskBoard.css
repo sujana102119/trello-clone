@@ -11,9 +11,9 @@
 .addCard {
     border-radius: 50%;
     background-color: #07B4EE;
-    height: 35px;
-    width: 35px;
+    height: 2.25rem;
+    width: 2.25rem;
     border-color: transparent;
-    margin-left: 1%;
-    margin-top: 2%;
+    margin-left: 1rem;
+    margin-top: 2rem;
 }

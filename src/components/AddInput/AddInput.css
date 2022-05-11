@@ -1,14 +1,18 @@
 .addTask {
     display: flex;
     justify-content: space-around;
-    margin: 9% 1% 7% 4%;
+    margin: 0.5rem 0.25rem;
 }
 
 .newTaskTitle {
     background-color: transparent;
     border: none;
     border-bottom: 1px solid #B8D8EA;
-    width: 70%;
+    width: 100%;
+    min-width: 15rem;
+    line-height: 2.25rem;
+    padding: 0 0.5rem;
+    margin:0.5rem 0.25rem;
 }
 
 .addTaskButton {
